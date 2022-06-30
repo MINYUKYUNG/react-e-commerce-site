@@ -24,8 +24,10 @@ function Header() {
   }
 
   useEffect(() => {
-    if (localStorage.getItem('theme') === 'dark') clickChecked(true);
-    else if (localStorage.getItem('theme') === 'light') clickChecked(false);
+    if (localStorage.getItem('theme')) {
+      if (localStorage.getItem('theme') === 'dark') clickChecked(true);
+      else if (localStorage.getItem('theme') === 'light') clickChecked(false);
+    } else clickChecked(false);
   }, [])
 
   const forIcon = useRecoilValue(saveCart);
