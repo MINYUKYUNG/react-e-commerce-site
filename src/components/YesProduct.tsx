@@ -1,5 +1,5 @@
-import { useParams } from 'react-router-dom';
-import { Link } from 'react-router-dom';
+import { ReactNode } from 'react'
+import { useParams, Link } from 'react-router-dom';
 import { useRecoilValue, useSetRecoilState } from 'recoil';
 import { ProductLists } from '../store/goods';
 import { updateCart } from '../store/cart';
@@ -16,7 +16,7 @@ function YesProduct() {
   }
 
   const star = () => {
-    const result = []
+    const result: ReactNode[] = []
     let forKey = 0
     const bool = true;
 

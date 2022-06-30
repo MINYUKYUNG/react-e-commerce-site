@@ -14,7 +14,7 @@ export interface proGuard {
 export const ProductLists = selector({
   key: 'ProductLists',
   get: async () => {
-    const { data } = await axios.get('https://vue-shop-oinochoe.vercel.app/products.json');
+    const { data } = await axios.get('https://fakestoreapi.com/products');
     const preNums = 4;
     let all: proGuard[] = [], fash: proGuard[] = [], acce: proGuard[] = [], digi: proGuard[] = [], preFash: proGuard[] = [], preAcce: proGuard[] = [], preDigi: proGuard[] = [];
 
