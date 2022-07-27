@@ -38,11 +38,11 @@ function CarouselCom() {
     return (
       <div key={ image.id } className="relative">
         <Link key={ image.id } to={ image.to } className="absolute z-10" style={{ height: "100%", width: "100%" }} />
-          <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl text-white font-bold absolute left-0 top-1/4 pl-20 lg:pl-44 2xl:pl-72">
-            <span className="fontKnewave">{ image.des }</span>
-            {/* <span className="text-base block text-left text-white font-normal py-1.5 pl-px">더 자세히 알아보기</span> */}
-          </h2>
-          <img src={ image.url } alt={ "캐러셀 이미지 " + image.id } style={{ maxHeight: "700px", width: "100%", objectFit: "cover" }} />
+        <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl text-white font-bold absolute left-0 top-1/4 pl-20 lg:pl-44 2xl:pl-72">
+          <span className="fontKnewave">{ image.des }</span>
+          {/* <span className="text-base block text-left text-white font-normal py-1.5 pl-px">더 자세히 알아보기</span> */}
+        </h2>
+        <img src={ image.url } alt={ "캐러셀 이미지 " + image.id } style={{ maxHeight: "700px", width: "100%", objectFit: "cover" }} />
       </div>
     )
   })
