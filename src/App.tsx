@@ -1,13 +1,13 @@
 import './App.css'
-import HomePage from './components/HomePage'
-import ScrollTop from './routes/ScrollTop'
 import { BrowserRouter } from 'react-router-dom';
-import { useSetRecoilState } from 'recoil';
-import { saveCart } from '../src/store/cart';
 import { useEffect } from 'react';
+import RouterView from '@routes/RouterView';
+import ScrollTop from '@routes/ScrollTop'
+import { useSetRecoilState } from 'recoil';
+import { saveCart } from '@store/cart';
 
 function App() {
-  const setSaveCart = useSetRecoilState(saveCart)
+  const setSaveCart = useSetRecoilState(saveCart);
 
   useEffect(() => {
     if (localStorage.getItem('cart_data') === null) {
@@ -15,13 +15,13 @@ function App() {
     } else if (localStorage.getItem('cart_data')) {
       setSaveCart(JSON.parse(localStorage.getItem('cart_data') || '{}'))
     }
-  }, [])
+  }, []);
 
 
   return (
     <BrowserRouter>
       <ScrollTop />
-      <HomePage />
+      <RouterView />
     </BrowserRouter>
   );
 }
