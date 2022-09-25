@@ -1,17 +1,16 @@
 import { Link } from 'react-router-dom';
 import { useRecoilValue } from 'recoil';
-import { ProductLists } from '../store/goods';
+import { ProductLists } from '@store/goods';
 
 function Preview() {
-  const { preFash, preAcce, preDigi } = useRecoilValue(ProductLists)
-  const forPre = [ { ca: '패션', pre: preFash }, { ca: '액세서리', pre: preAcce }, { ca: '디지털', pre: preDigi } ]
+  const { preFash, preAcce, preDigi } = useRecoilValue(ProductLists);
+  const forPre = [ { category: '패션', pre: preFash }, { category: '액세서리', pre: preAcce }, { category: '디지털', pre: preDigi } ];
   
-  const result = forPre.map(({ ca, pre }) => {
+  const result = forPre.map(({ category, pre }, index) => {
     return (
-      <section className="px-4 pt-12 pb-8 container mx-auto 2xl:px-20" key={ ca }>
-        <h2 className="pb-8 text-4xl font-bold text-center">{ ca }</h2>
+      <section className="px-4 pt-12 pb-8 container mx-auto 2xl:px-20" key={ index }>
+        <h2 className="pb-8 text-4xl font-bold text-center">{ category }</h2>
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 w-full gap-x-6">
-          
           { pre.map(({ id, title, price, image }) => {
             return (
               <div 
@@ -28,11 +27,10 @@ function Preview() {
               </div>
             )
           }) }
-
         </div>
       </section>
-    )
-  })
+    );
+  });
 
   
   return (
@@ -40,6 +38,6 @@ function Preview() {
       { result }
     </div>
   );
-}
+};
 
 export default Preview;

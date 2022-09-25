@@ -5,9 +5,9 @@ function Loading() {
 
   return (
     <div className="h-screen relative">
-      <div className={ `${fontStyle} ${fontSize} ${fontLocation}` } style={{ transform: "translateX(-50%)" }}>Loading...</div>
+      <div className={`${fontStyle} ${fontSize} ${fontLocation} -translate-x-1/2`}>Loading...</div>
     </div>
-  )
-}
+  );
+};
 
 export default Loading;

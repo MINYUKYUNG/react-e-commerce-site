@@ -1,16 +1,14 @@
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Link } from 'react-router-dom';
-import jeans from '../assets/jeans.jpg'
-import necklace from '../assets/necklace.jpg'
-import salad from '../assets/salad.jpg'
+import { jeans, necklace, salad } from '@assets/images/index';
 
 interface imagesGuard {
   id: number
   url: string
   des: string
   to: string
-}
+};
 
 function CarouselCom() {
   const images: imagesGuard[] = [
@@ -32,27 +30,26 @@ function CarouselCom() {
       des: 'Salad!',
       to: '/salad'
     }
-  ]
+  ];
 
   const slide = images.map((image) => {
     return (
       <div key={ image.id } className="relative">
-        <Link key={ image.id } to={ image.to } className="absolute z-10" style={{ height: "100%", width: "100%" }} />
+        <Link key={ image.id } to={ image.to } className="absolute z-10 h-full w-full" />
         <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl text-white font-bold absolute left-0 top-1/4 pl-20 lg:pl-44 2xl:pl-72">
           <span className="fontKnewave">{ image.des }</span>
-          {/* <span className="text-base block text-left text-white font-normal py-1.5 pl-px">더 자세히 알아보기</span> */}
         </h2>
-        <img src={ image.url } alt={ "캐러셀 이미지 " + image.id } style={{ maxHeight: "700px", width: "100%", objectFit: "cover" }} />
+        <img src={ image.url } alt={ "캐러셀 이미지 " + image.id } className="w-full object-cover" style={{ maxHeight: "700px" }} />
       </div>
     )
-  })
+  });
 
 
   return (
-    <Carousel autoPlay={true} showThumbs={false} interval={4000} infiniteLoop={true} showStatus={false} showArrows={false}>
+    <Carousel autoPlay={true} interval={4000} infiniteLoop={true} showThumbs={false} showStatus={false} showArrows={false}>
       { slide }
     </Carousel>
   );
-}
+};
 
 export default CarouselCom;

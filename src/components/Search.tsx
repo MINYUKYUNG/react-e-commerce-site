@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
-import { useRecoilValue } from 'recoil';
-import { ProductLists, proGuard } from '../store/goods';
 import { useState, useRef } from 'react';
+import { useRecoilValue } from 'recoil';
+import { ProductLists, proGuard } from '@store/goods';
 
 function Search() {
   const { all } = useRecoilValue(ProductLists);
@@ -11,24 +11,20 @@ function Search() {
   const search = (e: React.ChangeEvent<HTMLInputElement>) => {
     const input = e.target.value;
     if (e.target.value === '') {
+      if (resetMe.current) resetMe.current.value = '';
       setResult([]);
-      if (resetMe.current) {
-        resetMe.current.value = ''
-      }
     } else if (e.target.value !== '') {
       const list = all.filter((item) => {
         return item.title.toLowerCase().indexOf(input.toLowerCase()) > -1
       });
       setResult(list);
-    }
-  }
+    };
+  };
 
   const openClose = () => {
+    if (resetMe.current) resetMe.current.value = '';
     setResult([]);
-    if (resetMe.current) {
-      resetMe.current.value = ''
-    }
-  }
+  };
 
   const lists = result.map(({ id, title }) => {
     return (
@@ -37,8 +33,8 @@ function Search() {
           <span className="line-clamp-2">{ title }</span>
         </Link>
       </li>
-    )
-  })
+    );
+  });
 
 
   return (
@@ -56,6 +52,6 @@ function Search() {
       </ul>
     </div>  
   );
-}
+};
 
 export default Search;
