@@ -25,5 +25,6 @@ module.exports = {
   rules: {
     "react/react-in-jsx-scope": "off",
     "@typescript-eslint/no-extra-semi": "off",
+    "no-useless-catch": "off"
   },
 };
