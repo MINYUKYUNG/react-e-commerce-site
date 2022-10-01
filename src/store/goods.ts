@@ -1,34 +1,91 @@
 import { selector } from 'recoil';
-import { productsApi } from '@apis/goodsApi';
+import { productsApi, womenFashionsApi, menFashionsApi, electronicsApi, jeweleryApi } from '@apis/goodsApi';
+import { ProductGuard } from '@utils/type';
 
-export interface proGuard {
-  id: number,
-  title: string,
-  price: number,
-  description: string,
-  category: string,
-  image: string,
-  rating: { rate: number, count: number}
+const PRE_HALF = 2;
+const PRE_NUMS = 4;
+
+type AllListsGuard = {
+  [key: string]: ProductGuard
 };
 
-export const ProductLists = selector({
-  key: 'ProductLists',
+export const productLists = selector({
+  key: 'productLists',
   get: async () => {
     const data = await productsApi();
-    const preNums = 4;
-    let all: proGuard[] = [], fash: proGuard[] = [], acce: proGuard[] = [], digi: proGuard[] = [], preFash: proGuard[] = [], preAcce: proGuard[] = [], preDigi: proGuard[] = [];
+    const allLists: AllListsGuard = {};
 
-    data.forEach((item: proGuard) => {
+    const all = data.map((item: ProductGuard) => {
       item.price = Math.round(item.price);
-      all = [...all, item];
-      if (item.category === "men's clothing" || item.category === "women's clothing") fash = [...fash, item];
-      else if (item.category === "jewelery") acce = [...acce, item];
-      else if (item.category === "electronics") digi = [...digi, item];
-    });
-    preFash = fash.slice(0, preNums);
-    preAcce = acce.slice(0, preNums);
-    preDigi = digi.slice(0, preNums);
+      allLists[item.id] = item;
 
-    return { all, fash, acce, digi, preFash, preAcce, preDigi };
+      return item;
+    });
+
+    return { all, allLists };
+  }
+});
+
+export const womenFashionLists = selector({
+  key: 'womenFashionLists',
+  get: async () => {
+    const data = await womenFashionsApi();
+
+    const womenFash =  data.map((item: ProductGuard) => {
+      item.price = Math.round(item.price);
+      return item;
+    });
+
+    const preWomen = womenFash.slice(0, PRE_HALF);
+
+    return { womenFash, preWomen };
+  }
+});
+
+export const menFashionLists = selector({
+  key: 'menFashionLists',
+  get: async () => {
+    const data = await menFashionsApi();
+
+    const menFash =  data.map((item: ProductGuard) => {
+      item.price = Math.round(item.price);
+      return item;
+    });
+
+    const preMen = menFash.slice(0, PRE_HALF);
+
+    return { menFash, preMen };
+  }
+});
+
+export const electronicsLists = selector({
+  key: 'electronicsLists',
+  get: async () => {
+    const data = await electronicsApi();
+
+    const elec =  data.map((item: ProductGuard) => {
+      item.price = Math.round(item.price);
+      return item;
+    });
+
+    const preElec = elec.slice(0, PRE_NUMS);
+
+    return { elec, preElec };
+  }
+});
+
+export const jeweleryLists = selector({
+  key: 'jeweleryLists',
+  get: async () => {
+    const data = await jeweleryApi();
+
+    const jewe =  data.map((item: ProductGuard) => {
+      item.price = Math.round(item.price);
+      return item;
+    });
+
+    const preJewe = jewe.slice(0, PRE_NUMS);
+
+    return { jewe, preJewe };
   }
 });

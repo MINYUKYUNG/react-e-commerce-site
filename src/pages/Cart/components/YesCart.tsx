@@ -1,11 +1,11 @@
 import { Link } from 'react-router-dom';
 import { useRecoilValue, useSetRecoilState } from 'recoil';
 import { saveCart, updateCart, deleteItem } from '@store/cart'
-import { ProductLists } from '@store/goods';
+import { productLists } from '@store/goods';
 
 function YesCart() {
   const save = useRecoilValue(saveCart);
-  const { all } = useRecoilValue(ProductLists);
+  const { allLists } = useRecoilValue(productLists);
   const setUpdateCart = useSetRecoilState(updateCart);
   const setDeleteItem = useSetRecoilState(deleteItem);
 
@@ -30,20 +30,20 @@ function YesCart() {
   const result = () => {
     let baseCart: { id: number, count: number }[] = [];
     for (const key in save) {
-      baseCart = [...baseCart, save[key]];
+      baseCart = [ ...baseCart, save[key] ];
     };
 
     const cartList = baseCart.map(({ id, count }) => {
       return (
         <div key={ id } className="card lg:card-side border-solid border border-gray-200 my-12">
-          <Link to={ '/product/' + id } className="bg-white flex justify-center">
-            <figure className="bg-white h-56 w-56"><img src={ all[id-1].image } alt="상품 이미지" className="object-contain h-5/6 w-5/6" /></figure>
+          <Link to={ '/products/' + id } className="bg-white flex justify-center">
+            <figure className="bg-white h-56 w-56"><img src={ allLists[id].image } alt="상품 이미지" className="object-contain h-5/6 w-5/6" /></figure>
           </Link>
           <div className="card-body relative">
-            <Link to={ '/product/' + id }>
-              <h2 className="card-title">{ all[id-1].title }</h2>
+            <Link to={ '/products/' + id }>
+              <h2 className="card-title">{ allLists[id].title }</h2>
             </Link>
-            <p className="text-3xl">${ all[id-1].price * count }</p>
+            <p className="text-3xl">${ allLists[id].price * count }</p>
             <div className="card-actions pt-4">
               <div className="btn-group">
                 <button className="btn btn-primary" onClick={ () => minusCart(id) }> - </button>

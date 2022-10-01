@@ -1,18 +1,17 @@
 import { useParams } from 'react-router-dom';
 import { useRecoilValue } from 'recoil';
-import { ProductLists } from '@store/goods';
 import NoProduct from './components/NoProduct';
 import YesProduct from './components/YesProduct';
+import { singleProduct } from '@store/singleProduct';
 
 function Product() {
-  const { all } = useRecoilValue(ProductLists);
   const params = useParams<{ id: string }>();
+  const { data } = useRecoilValue(singleProduct(params.id));
 
   const result = () => {
-    if (params.id) {
-      if (Number(params.id) <= all.length && params.id[0] !== '-' && params.id[0] !== '0') return <YesProduct />
-      else return <NoProduct />
-    } else return <NoProduct />
+    if (params.id && params.id[0] === '0') return <NoProduct />;
+    else if (data) return <YesProduct />;
+    else return <NoProduct />;
   };
 
 

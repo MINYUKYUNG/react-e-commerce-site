@@ -1,13 +1,13 @@
 import { ReactNode } from 'react'
 import { useParams, Link } from 'react-router-dom';
 import { useRecoilValue, useSetRecoilState } from 'recoil';
-import { ProductLists } from '@store/goods';
 import { updateCart } from '@store/cart';
+import { singleProduct } from '@store/singleProduct';
 
 function YesProduct() {
-  const { all } = useRecoilValue(ProductLists);
   const params = useParams<{ id: string }>();
-  const { image, title, description, rating, price, category } = all[Number(params.id) - 1];
+  const { data } = useRecoilValue(singleProduct(params.id));
+  const { image, title, description, rating, price, category } = data;
 
   const menu = () => {
     if (category === "men's clothing" || category === "women's clothing") return ( <li>패션</li> );

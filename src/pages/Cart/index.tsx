@@ -1,16 +1,17 @@
 import { Link } from 'react-router-dom';
 import { useRecoilValue, useRecoilState } from 'recoil';
 import { saveCart } from '@store/cart';
-import { ProductLists } from '@store/goods';
+import { productLists } from '@store/goods';
 import YesCart from './components/YesCart';
+import { Storage } from '@utils/storage';
 
 function Cart() {
   const [ save, setSave ] = useRecoilState(saveCart);
-  const { all } = useRecoilValue(ProductLists);
+  const { allLists } = useRecoilValue(productLists);
 
   const deleteCart = () => {
     setSave({});
-    localStorage.removeItem('cart_data');
+    Storage.remove('cart_data');
   };
 
   const toPr = () => {
@@ -19,7 +20,7 @@ function Cart() {
     for (const key in save) {
       newId = save[key].id;
       newCount = save[key].count;
-      newTotalPrice = newTotalPrice + (all[newId-1].price * newCount);
+      newTotalPrice = newTotalPrice + (allLists[newId].price * newCount);
     };
 
     return newTotalPrice;

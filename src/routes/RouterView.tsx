@@ -8,7 +8,7 @@ function RouterView() {
     <Routes>
       <Route element={<Layout />}>
         <Route path={"/"} element={<Home />} />
-        <Route path={"/product"} element={<Product />}>
+        <Route path={"/products"} element={<Product />}>
           <Route path=":id" element={<Product />} />
         </Route>
         <Route path={"/fashion"} element={<Fashion />} />
