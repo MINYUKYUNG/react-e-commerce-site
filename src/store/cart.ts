@@ -1,4 +1,5 @@
 import { atom, selector } from 'recoil';
+import { Storage } from '@utils/storage';
 
 export const saveCart = atom<Record<K, V>>({
   key: 'saveCart',
@@ -27,13 +28,13 @@ export const updateCart = selector({
     const { getParams, num } = payload as payGuard;
     let save: Record<K, V> = {};
 
-    if (localStorage.getItem('cart_data')) {
-      save = JSON.parse(localStorage.getItem('cart_data') || '{}')
+    if (Storage.get('cart_data')) {
+      save = JSON.parse(Storage.get('cart_data') || '{}')
     } else {
       save = {}
     };
 
-    // saveCart 값 바꾸고 -> localStorage.setItem 업데이트
+    // saveCart 값 바꾸고 -> Storage.set 업데이트
     if (save[getParams]) { // 있으면, 기존것에 추가
       if (save[getParams].count === 1 && num === -1) {
         save[getParams] = { id: getParams, count: 1 }
@@ -47,7 +48,7 @@ export const updateCart = selector({
     };
     
     set(saveCart, save);
-    localStorage.setItem('cart_data', JSON.stringify(save));
+    Storage.set('cart_data', JSON.stringify(save));
   }
 });
 
@@ -64,6 +65,6 @@ export const deleteItem = selector({
     };
 
     set(saveCart, save);
-    localStorage.setItem('cart_data', JSON.stringify(save));
+    Storage.set('cart_data', JSON.stringify(save));
   }
 });

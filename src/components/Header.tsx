@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import Search from './Search';
 import { useRecoilValue } from 'recoil';
 import { saveCart } from '@store/cart';
+import { Storage } from '@utils/storage';
 
 function Header() {
   const [ checked, setChecked ] = useState(false);
@@ -14,19 +15,19 @@ function Header() {
       setChecked(false);
       documentEl.dataset.theme = 'light';
       documentEl.classList.remove('dark');
-      localStorage.setItem('theme', 'light');
+      Storage.set('theme', 'light');
     } else if (e === true) {
       setChecked(true);
       documentEl.dataset.theme = 'dark';
       documentEl.classList.add('dark');
-      localStorage.setItem('theme', 'dark');
+      Storage.set('theme', 'dark');
     };
   };
-
+  
   useEffect(() => {
-    if (localStorage.getItem('theme')) {
-      if (localStorage.getItem('theme') === 'dark') clickChecked(true);
-      else if (localStorage.getItem('theme') === 'light') clickChecked(false);
+    if (Storage.get('theme')) {
+      if (Storage.get('theme') === 'dark') clickChecked(true);
+      else if (Storage.get('theme') === 'light') clickChecked(false);
     } else clickChecked(false);
   }, []);
 
