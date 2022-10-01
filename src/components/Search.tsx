@@ -1,11 +1,12 @@
 import { Link } from 'react-router-dom';
 import { useState, useRef } from 'react';
 import { useRecoilValue } from 'recoil';
-import { ProductLists, proGuard } from '@store/goods';
+import { productLists } from '@store/goods';
+import { ProductGuard } from '@utils/type';
 
 function Search() {
-  const { all } = useRecoilValue(ProductLists);
-  const [ result, setResult ] = useState<proGuard[]>([]);
+  const { all } = useRecoilValue(productLists);
+  const [ result, setResult ] = useState<ProductGuard[]>([]);
   const resetMe = useRef<HTMLInputElement>(null);
 
   const search = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -14,7 +15,7 @@ function Search() {
       if (resetMe.current) resetMe.current.value = '';
       setResult([]);
     } else if (e.target.value !== '') {
-      const list = all.filter((item) => {
+      const list = all.filter((item: ProductGuard) => {
         return item.title.toLowerCase().indexOf(input.toLowerCase()) > -1
       });
       setResult(list);
@@ -26,10 +27,10 @@ function Search() {
     setResult([]);
   };
 
-  const lists = result.map(({ id, title }) => {
+  const searchlists = result.map(({ id, title }) => {
     return (
       <li key={ id } onClick={ openClose }>
-        <Link to={ '/product/' + id }>
+        <Link to={ '/products/' + id }>
           <span className="line-clamp-2">{ title }</span>
         </Link>
       </li>
@@ -48,7 +49,7 @@ function Search() {
         className="input max-w-xs bg-gray-300 flex-none ml-5 mr-1 dark:text-white dark:bg-gray-600 focus:outline-0"
       />
       <ul className="dropdown-content menu shadow bg-base-100 w-full flex-none ml-5 dark:text-white left-0 mt-2 max-h-96 overflow-y-auto">
-        { lists }
+        { searchlists }
       </ul>
     </div>  
   );
