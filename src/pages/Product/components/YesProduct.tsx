@@ -6,8 +6,7 @@ import { singleProduct } from '@store/singleProduct';
 
 function YesProduct() {
   const params = useParams<{ id: string }>();
-  const { data } = useRecoilValue(singleProduct(params.id));
-  const { image, title, description, rating, price, category } = data;
+  const { image, title, description, rating, price, category } = useRecoilValue(singleProduct(params.id));
 
   const menu = () => {
     if (category === "men's clothing" || category === "women's clothing") return ( <li>패션</li> );

@@ -35,13 +35,13 @@ function Header() {
   let numberCart = 0;
 
   const redIcon = () => {
-    if (Object.keys(forIcon).length) { // 0이 아니면
-      for (const key in { ...forIcon }) {
-        numberCart = numberCart + { ...forIcon }[key].count; // typeof는 number
+    if (Object.keys(forIcon).length) {
+      for (const key in forIcon) {
+        numberCart = numberCart + forIcon[key].count;
       };
 
       return numberCart;
-    } else return 0; // 0이면
+    } else return 0;
   };
 
   

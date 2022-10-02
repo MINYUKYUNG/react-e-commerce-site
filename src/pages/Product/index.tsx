@@ -6,7 +6,7 @@ import { singleProduct } from '@store/singleProduct';
 
 function Product() {
   const params = useParams<{ id: string }>();
-  const { data } = useRecoilValue(singleProduct(params.id));
+  const data = useRecoilValue(singleProduct(params.id));
 
   const result = () => {
     if (params.id && params.id[0] === '0') return <NoProduct />;
