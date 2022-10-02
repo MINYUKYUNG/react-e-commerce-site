@@ -7,7 +7,7 @@ function Digital() {
 
   const info = {
     data: elec,
-    subTitle: "패션",
+    subTitle: "디지털",
   };
 
   return <Category { ...info } />
