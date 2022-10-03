@@ -4,7 +4,6 @@ import { Home, Fashion, Accessory, Digital, NotFound, Product, Cart } from '@pag
 
 function RouterView() {
   return (
-    <div>
     <Routes>
       <Route element={<Layout />}>
         <Route path={"/"} element={<Home />} />
@@ -18,7 +17,6 @@ function RouterView() {
         <Route path={'*'} element={<NotFound />} />
       </Route>
     </Routes>
-    </div>
   );
 }
 
