@@ -31,7 +31,8 @@ function Preview() {
           image,
         }) => (
           <div
-            className="card card-compact bg-gray-100 grid flex-grow dark:bg-gray-700 cursor-pointer border-solid border border-gray-200 dark:border-none"
+            className="card card-compact bg-gray-100 grid flex-grow dark:bg-gray-700 cursor-pointer
+            border-solid border border-gray-200 dark:border-none overflow-hidden"
             key={id}
           >
             <Link to={`/products/${id}`}>
