@@ -14,15 +14,13 @@ type V = {
 
 export const saveCart = atom<Record<K, V>>({
   key: 'saveCart',
-  default: {
-    // 1: { id: 1, count: 2 } 형식으로 추가된다.
-  },
+  default: {},
 });
 
 export const updateCart = selector({
   key: 'updateCart',
-  get: () => ({}), // 원본훼손X
-  set: ({ set }, payload) => { // 원본훼손O
+  get: () => ({}),
+  set: ({ set }, payload) => {
     const { getParams, num } = payload as payGuard;
     let save: Record<K, V> = {};
 
@@ -32,14 +30,13 @@ export const updateCart = selector({
       save = {};
     }
 
-    // saveCart 값 바꾸고 -> Storage.set 업데이트
-    if (save[getParams]) { // 있으면, 기존것에 추가
+    if (save[getParams]) {
       if (save[getParams].count === 1 && num === -1) {
         save[getParams] = { id: getParams, count: 1 };
       } else {
         save[getParams].count += num;
       }
-    } else { // undefined면, 새로 추가
+    } else {
       save[getParams] = { id: getParams, count: 1 };
     }
 
@@ -50,8 +47,8 @@ export const updateCart = selector({
 
 export const deleteItem = selector({
   key: 'deleteItem',
-  get: () => ({}), // 원본훼손X
-  set: ({ set, get }, payload) => { // 원본훼손O
+  get: () => ({}),
+  set: ({ set, get }, payload) => {
     const { id } = payload as { id: number };
     let save: Record<K, V> = {};
 

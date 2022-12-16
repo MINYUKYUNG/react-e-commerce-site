@@ -60,8 +60,6 @@ module.exports = {
     'jsx-a11y/label-has-associated-control': 'off',
     'no-useless-catch': 'off',
     'react/jsx-boolean-value': 'off',
-    // 'no-restricted-syntax': ['error', 'ForInStatement', 'LabeledStatement', 'WithStatement'],
-    // 'import/no-extraneous-dependencies': 'off',
   },
   settings: {
     'import/resolver': {
