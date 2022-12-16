@@ -7,10 +7,10 @@ function Digital() {
 
   const info = {
     data: elec,
-    subTitle: "디지털",
+    subTitle: '디지털',
   };
 
-  return <Category { ...info } />
-};
+  return <Category {...info} />;
+}
 
 export default Digital;

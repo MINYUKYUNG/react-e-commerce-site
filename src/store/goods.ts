@@ -1,5 +1,11 @@
 import { selector } from 'recoil';
-import { productsApi, womenFashionsApi, menFashionsApi, electronicsApi, jeweleryApi } from '@apis/goodsApi';
+import {
+  productsApi,
+  womenFashionsApi,
+  menFashionsApi,
+  electronicsApi,
+  jeweleryApi,
+} from '@apis/goodsApi';
 import { ProductGuard } from '@utils/type';
 
 const PRE_HALF = 2;
@@ -7,7 +13,7 @@ const PRE_NUMS = 4;
 
 type AllListsGuard = {
   [key: string]: ProductGuard
-};
+}
 
 export const productLists = selector({
   key: 'productLists',
@@ -23,7 +29,7 @@ export const productLists = selector({
     });
 
     return { all, allLists };
-  }
+  },
 });
 
 export const womenFashionLists = selector({
@@ -31,7 +37,7 @@ export const womenFashionLists = selector({
   get: async () => {
     const data = await womenFashionsApi();
 
-    const womenFash =  data.map((item: ProductGuard) => {
+    const womenFash = data.map((item: ProductGuard) => {
       item.price = Math.round(item.price);
       return item;
     });
@@ -39,7 +45,7 @@ export const womenFashionLists = selector({
     const preWomen = womenFash.slice(0, PRE_HALF);
 
     return { womenFash, preWomen };
-  }
+  },
 });
 
 export const menFashionLists = selector({
@@ -47,7 +53,7 @@ export const menFashionLists = selector({
   get: async () => {
     const data = await menFashionsApi();
 
-    const menFash =  data.map((item: ProductGuard) => {
+    const menFash = data.map((item: ProductGuard) => {
       item.price = Math.round(item.price);
       return item;
     });
@@ -55,7 +61,7 @@ export const menFashionLists = selector({
     const preMen = menFash.slice(0, PRE_HALF);
 
     return { menFash, preMen };
-  }
+  },
 });
 
 export const electronicsLists = selector({
@@ -63,7 +69,7 @@ export const electronicsLists = selector({
   get: async () => {
     const data = await electronicsApi();
 
-    const elec =  data.map((item: ProductGuard) => {
+    const elec = data.map((item: ProductGuard) => {
       item.price = Math.round(item.price);
       return item;
     });
@@ -71,7 +77,7 @@ export const electronicsLists = selector({
     const preElec = elec.slice(0, PRE_NUMS);
 
     return { elec, preElec };
-  }
+  },
 });
 
 export const jeweleryLists = selector({
@@ -79,7 +85,7 @@ export const jeweleryLists = selector({
   get: async () => {
     const data = await jeweleryApi();
 
-    const jewe =  data.map((item: ProductGuard) => {
+    const jewe = data.map((item: ProductGuard) => {
       item.price = Math.round(item.price);
       return item;
     });
@@ -87,5 +93,5 @@ export const jeweleryLists = selector({
     const preJewe = jewe.slice(0, PRE_NUMS);
 
     return { jewe, preJewe };
-  }
+  },
 });

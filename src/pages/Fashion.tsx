@@ -7,11 +7,11 @@ function Fashion() {
   const { menFash } = useRecoilValue(menFashionLists);
 
   const info = {
-    data: [ ...womenFash, ...menFash ],
-    subTitle: "패션",
+    data: [...womenFash, ...menFash],
+    subTitle: '패션',
   };
 
-  return <Category { ...info } />
-};
+  return <Category {...info} />;
+}
 
 export default Fashion;

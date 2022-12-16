@@ -7,10 +7,10 @@ function Accessory() {
 
   const info = {
     data: jewe,
-    subTitle: "액세서리",
+    subTitle: '액세서리',
   };
 
-  return <Category { ...info } />
-};
+  return <Category {...info} />;
+}
 
 export default Accessory;

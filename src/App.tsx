@@ -1,4 +1,4 @@
-import './App.css'
+import './App.css';
 import { BrowserRouter } from 'react-router-dom';
 import { useEffect } from 'react';
 import RouterView from '@routes/RouterView';
@@ -12,12 +12,11 @@ function App() {
 
   useEffect(() => {
     if (Storage.get('cart_data') === null) {
-      Storage.set('cart_data', JSON.stringify({}))
+      Storage.set('cart_data', JSON.stringify({}));
     } else if (Storage.get('cart_data')) {
-      setSaveCart(JSON.parse(Storage.get('cart_data') || '{}'))
+      setSaveCart(JSON.parse(Storage.get('cart_data') || '{}'));
     }
   }, []);
-
 
   return (
     <BrowserRouter>

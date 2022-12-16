@@ -8,6 +8,6 @@ function Home() {
       <Preview />
     </main>
   );
-};
+}
 
 export default Home;

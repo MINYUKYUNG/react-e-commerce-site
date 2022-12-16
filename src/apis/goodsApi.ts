@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const apiRoot = axios.create({
-  baseURL: 'https://fakestoreapi.com/products'
+  baseURL: 'https://fakestoreapi.com/products',
 });
 
 const SORT = '?sort=desc';
@@ -12,7 +12,7 @@ export const productsApi = async () => {
     return data;
   } catch (error) {
     throw error;
-  };
+  }
 };
 
 export const womenFashionsApi = async () => {
@@ -21,7 +21,7 @@ export const womenFashionsApi = async () => {
     return data;
   } catch (error) {
     throw error;
-  };
+  }
 };
 
 export const menFashionsApi = async () => {
@@ -30,7 +30,7 @@ export const menFashionsApi = async () => {
     return data;
   } catch (error) {
     throw error;
-  };
+  }
 };
 
 export const electronicsApi = async () => {
@@ -39,7 +39,7 @@ export const electronicsApi = async () => {
     return data;
   } catch (error) {
     throw error;
-  };
+  }
 };
 
 export const jeweleryApi = async () => {
@@ -48,7 +48,7 @@ export const jeweleryApi = async () => {
     return data;
   } catch (error) {
     throw error;
-  };
+  }
 };
 
 export const singleApi = async (productId: string | undefined) => {
@@ -57,5 +57,5 @@ export const singleApi = async (productId: string | undefined) => {
     return data;
   } catch (error) {
     throw error;
-  };
+  }
 };

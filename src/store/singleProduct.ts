@@ -8,7 +8,7 @@ export const singleProduct = selectorFamily({
 
     if (data === '') return data;
     data.price = Math.round(data.price);
-    
+
     return data;
-  }
+  },
 });
