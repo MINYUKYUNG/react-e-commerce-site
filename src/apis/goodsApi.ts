@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const apiRoot = axios.create({
-  baseURL: 'https://fakestoreapi.com/products',
+  baseURL: 'https://mmm-api.chloemin.com/products',
 });
 
 const SORT = '?sort=desc';
