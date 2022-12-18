@@ -56,7 +56,7 @@ function Header() {
           </label>
         </div>
         <div className="mx-2 flex-none">
-          <Link to="/" className="text-lg font-bold text-gray-700 dark:text-white">React Shop</Link>
+          <Link to="/" className="text-lg font-bold text-gray-700 dark:text-white">MMM</Link>
         </div>
         <div className="hidden flex-none sm:flex md:flex-1">
           <Link to="/fashion" className="btn btn-ghost text-gray-700 content-center btn-sm dark:text-white">패션</Link>
