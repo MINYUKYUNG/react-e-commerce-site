@@ -2,7 +2,7 @@ import './App.css';
 import { BrowserRouter } from 'react-router-dom';
 import { useEffect } from 'react';
 import RouterView from '@routes/RouterView';
-import ScrollTop from '@routes/ScrollTop'
+import ScrollTop from '@routes/ScrollTop';
 import { useSetRecoilState } from 'recoil';
 import { saveCart } from '@store/cart';
 import { Storage } from '@utils/storage';
