@@ -1,0 +1,19 @@
+{
+  "roots": ["<rootDir>/test/"],
+  "testPathIgnorePatterns": ["<rootDir>/node_modules/"],
+  "testEnvironment": "jsdom",
+  "moduleNameMapper": {
+    "\\.(css|less|svg|png|jpg)$": "identity-obj-proxy",
+    "^@apis(.*)$": "<rootDir>/src/apis$1",
+    "^@assets(.*)$": "<rootDir>/src/assets$1",
+    "^@components(.*)$": "<rootDir>/src/components$1",
+    "^@pages(.*)$": "<rootDir>/src/pages$1",
+    "^@routes(.*)$": "<rootDir>/src/routes$1",
+    "^@store(.*)$": "<rootDir>/src/store$1",
+    "^@utils(.*)$": "<rootDir>/src/utils$1"
+  },
+  "setupFilesAfterEnv": ["<rootDir>/test/setup.ts"],
+  "transform": {
+    "^.+\\.(js|jsx|ts|tsx)$": "ts-jest"
+  }
+}
