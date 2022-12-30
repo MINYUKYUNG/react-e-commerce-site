@@ -1,7 +1,7 @@
 import { atom, selector } from 'recoil';
 import { Storage } from '@utils/storage';
 
-interface payGuard {
+interface UpdateCartPayloadGuard {
   getParams: number
   num: number
 }
@@ -12,8 +12,8 @@ type V = {
   count: number
 }
 
-export const saveCart = atom<Record<K, V>>({
-  key: 'saveCart',
+export const cartItemsState = atom<Record<K, V>>({
+  key: 'cartItemsState',
   default: {},
 });
 
@@ -21,7 +21,7 @@ export const updateCart = selector({
   key: 'updateCart',
   get: () => ({}),
   set: ({ set }, payload) => {
-    const { getParams, num } = payload as payGuard;
+    const { getParams, num } = payload as UpdateCartPayloadGuard;
     let save: Record<K, V> = {};
 
     if (Storage.get('cart_data')) {
@@ -40,23 +40,23 @@ export const updateCart = selector({
       save[getParams] = { id: getParams, count: 1 };
     }
 
-    set(saveCart, save);
+    set(cartItemsState, save);
     Storage.set('cart_data', JSON.stringify(save));
   },
 });
 
-export const deleteItem = selector({
-  key: 'deleteItem',
+export const deleteCartItem = selector({
+  key: 'deleteCartItem',
   get: () => ({}),
   set: ({ set, get }, payload) => {
     const { id } = payload as { id: number };
     let save: Record<K, V> = {};
 
-    Object.keys(get(saveCart)).forEach((key) => {
-      if (Number(key) !== id) save = { ...save, [key]: get(saveCart)[key] };
+    Object.keys(get(cartItemsState)).forEach((key) => {
+      if (Number(key) !== id) save = { ...save, [key]: get(cartItemsState)[key] };
     });
 
-    set(saveCart, save);
+    set(cartItemsState, save);
     Storage.set('cart_data', JSON.stringify(save));
   },
 });

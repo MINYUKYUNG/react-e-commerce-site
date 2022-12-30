@@ -1,16 +1,11 @@
 import Category from '@components/Category';
 import { useRecoilValue } from 'recoil';
-import { electronicsLists } from '@store/goods';
+import { electronicsState } from '@store/goods';
 
 function Digital() {
-  const { elec } = useRecoilValue(electronicsLists);
+  const { electronicsList } = useRecoilValue(electronicsState);
 
-  const info = {
-    data: elec,
-    subTitle: '디지털',
-  };
-
-  return <Category {...info} />;
+  return <Category data={electronicsList} subTitle="디지털" />;
 }
 
 export default Digital;

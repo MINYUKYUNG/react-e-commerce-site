@@ -1,25 +1,25 @@
 import { Link } from 'react-router-dom';
 import React, { useState } from 'react';
 import { useRecoilValue } from 'recoil';
-import { productLists } from '@store/goods';
+import { allProductsState } from '@store/goods';
 import { ProductGuard } from '@utils/type';
 
 function Search() {
-  const { all } = useRecoilValue(productLists);
-  const [result, setResult] = useState<ProductGuard[]>([]);
+  const { allProductsList } = useRecoilValue(allProductsState);
+  const [searchResultList, setSearchResultList] = useState<ProductGuard[]>([]);
 
-  const search = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const productSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
     const input = e.target.value;
-    if (input === '') return setResult([]);
+    if (input === '') return setSearchResultList([]);
 
-    const list = all.filter((
+    const list = allProductsList.filter((
       item: ProductGuard,
     ) => item.title.toLowerCase().indexOf(input.toLowerCase()) > -1);
-    setResult(list);
+    setSearchResultList(list);
   };
 
-  const searchLists = result.map(({ id, title }) => (
-    <li key={id} onClick={() => setResult([])}>
+  const searchList = searchResultList.map(({ id, title }) => (
+    <li key={id} onClick={() => setSearchResultList([])}>
       <Link to={`/products/${id}`}>
         <span className="line-clamp-2">{ title }</span>
       </Link>
@@ -31,11 +31,11 @@ function Search() {
       <input
         type="text"
         placeholder="검색"
-        onChange={search}
+        onChange={productSearch}
         className="input max-w-xs bg-gray-300 flex-none ml-5 mr-1 dark:text-white dark:bg-gray-600 focus:outline-0"
       />
       <ul className="dropdown-content menu shadow bg-base-100 w-full flex-none ml-5 dark:text-white left-0 mt-2 max-h-96 overflow-y-auto">
-        { searchLists }
+        { searchList }
       </ul>
     </div>
   );

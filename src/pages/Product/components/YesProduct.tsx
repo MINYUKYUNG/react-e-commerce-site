@@ -54,7 +54,7 @@ function YesProduct() {
   };
 
   const setUpdateCart = useSetRecoilState(updateCart);
-  const sendCart = () => {
+  const sendCartItem = () => {
     setUpdateCart({
       getParams: Number(params.id),
       num: 1,
@@ -97,7 +97,7 @@ function YesProduct() {
               <button
                 type="button"
                 className="btn btn-primary"
-                onClick={sendCart}
+                onClick={sendCartItem}
               >
                 장바구니에 담기
               </button>

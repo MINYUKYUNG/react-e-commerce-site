@@ -1,97 +1,97 @@
 import { selector } from 'recoil';
 import {
   productsApi,
-  womenFashionsApi,
-  menFashionsApi,
+  womenFashionApi,
+  menFashionApi,
   electronicsApi,
   jeweleryApi,
 } from '@apis/goodsApi';
 import { ProductGuard } from '@utils/type';
 
-const PRE_HALF = 2;
-const PRE_NUMS = 4;
+const PREVIEW_TWO = 2;
+const PREVIEW_FOUR = 4;
 
-type AllListsGuard = {
+type AllProductsListObjGuard = {
   [key: string]: ProductGuard
 }
 
-export const productLists = selector({
-  key: 'productLists',
+export const allProductsState = selector({
+  key: 'allProductsState',
   get: async () => {
     const data = await productsApi();
-    const allLists: AllListsGuard = {};
+    const allProductsListObj: AllProductsListObjGuard = {};
 
-    const all = data.map((item: ProductGuard) => {
+    const allProductsList = data.map((item: ProductGuard) => {
       item.price = Math.round(item.price);
-      allLists[item.id] = item;
+      allProductsListObj[item.id] = item;
 
       return item;
     });
 
-    return { all, allLists };
+    return { allProductsList, allProductsListObj };
   },
 });
 
-export const womenFashionLists = selector({
-  key: 'womenFashionLists',
+export const womenFashionState = selector({
+  key: 'womenFashionState',
   get: async () => {
-    const data = await womenFashionsApi();
+    const data = await womenFashionApi();
 
-    const womenFash = data.map((item: ProductGuard) => {
+    const womenFashionList = data.map((item: ProductGuard) => {
       item.price = Math.round(item.price);
       return item;
     });
 
-    const preWomen = womenFash.slice(0, PRE_HALF);
+    const womenFashionPreviewList = womenFashionList.slice(0, PREVIEW_TWO);
 
-    return { womenFash, preWomen };
+    return { womenFashionList, womenFashionPreviewList };
   },
 });
 
-export const menFashionLists = selector({
-  key: 'menFashionLists',
+export const menFashionState = selector({
+  key: 'menFashionState',
   get: async () => {
-    const data = await menFashionsApi();
+    const data = await menFashionApi();
 
-    const menFash = data.map((item: ProductGuard) => {
+    const menFashionList = data.map((item: ProductGuard) => {
       item.price = Math.round(item.price);
       return item;
     });
 
-    const preMen = menFash.slice(0, PRE_HALF);
+    const menFashionPreviewList = menFashionList.slice(0, PREVIEW_TWO);
 
-    return { menFash, preMen };
+    return { menFashionList, menFashionPreviewList };
   },
 });
 
-export const electronicsLists = selector({
-  key: 'electronicsLists',
+export const electronicsState = selector({
+  key: 'electronicsState',
   get: async () => {
     const data = await electronicsApi();
 
-    const elec = data.map((item: ProductGuard) => {
+    const electronicsList = data.map((item: ProductGuard) => {
       item.price = Math.round(item.price);
       return item;
     });
 
-    const preElec = elec.slice(0, PRE_NUMS);
+    const electronicsPreviewList = electronicsList.slice(0, PREVIEW_FOUR);
 
-    return { elec, preElec };
+    return { electronicsList, electronicsPreviewList };
   },
 });
 
-export const jeweleryLists = selector({
-  key: 'jeweleryLists',
+export const jeweleryState = selector({
+  key: 'jeweleryState',
   get: async () => {
     const data = await jeweleryApi();
 
-    const jewe = data.map((item: ProductGuard) => {
+    const jeweleryList = data.map((item: ProductGuard) => {
       item.price = Math.round(item.price);
       return item;
     });
 
-    const preJewe = jewe.slice(0, PRE_NUMS);
+    const jeweleryPreviewList = jeweleryList.slice(0, PREVIEW_FOUR);
 
-    return { jewe, preJewe };
+    return { jeweleryList, jeweleryPreviewList };
   },
 });

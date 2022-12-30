@@ -1,26 +1,26 @@
 import { Link } from 'react-router-dom';
 import { useRecoilValue } from 'recoil';
 import {
-  womenFashionLists,
-  menFashionLists,
-  electronicsLists,
-  jeweleryLists,
+  womenFashionState,
+  menFashionState,
+  electronicsState,
+  jeweleryState,
 } from '@store/goods';
 import { CategoryGuard } from '@utils/type';
 
 function Preview() {
-  const { preWomen } = useRecoilValue(womenFashionLists);
-  const { preMen } = useRecoilValue(menFashionLists);
-  const { preElec } = useRecoilValue(electronicsLists);
-  const { preJewe } = useRecoilValue(jeweleryLists);
+  const { womenFashionPreviewList } = useRecoilValue(womenFashionState);
+  const { menFashionPreviewList } = useRecoilValue(menFashionState);
+  const { electronicsPreviewList } = useRecoilValue(electronicsState);
+  const { jeweleryPreviewList } = useRecoilValue(jeweleryState);
 
-  const forPre = [
-    { subTitle: '패션', data: [...preWomen, ...preMen] },
-    { subTitle: '액세서리', data: preElec },
-    { subTitle: '디지털', data: preJewe },
+  const productsPreviewList = [
+    { subTitle: '패션', data: [...womenFashionPreviewList, ...menFashionPreviewList] },
+    { subTitle: '액세서리', data: electronicsPreviewList },
+    { subTitle: '디지털', data: jeweleryPreviewList },
   ];
 
-  const result = forPre.map(({ subTitle, data }: CategoryGuard, index) => (
+  const result = productsPreviewList.map(({ subTitle, data }: CategoryGuard, index) => (
     <section className="px-4 pt-12 pb-8 container mx-auto 2xl:px-20" key={index}>
       <h2 className="pb-8 text-4xl font-bold text-center">{ subTitle }</h2>
       <div className="grid sm:grid-cols-2 lg:grid-cols-4 w-full gap-x-6">

@@ -1,35 +1,35 @@
 import { Link } from 'react-router-dom';
 import { useRecoilValue, useRecoilState } from 'recoil';
-import { saveCart } from '@store/cart';
-import { productLists } from '@store/goods';
+import { cartItemsState } from '@store/cart';
+import { allProductsState } from '@store/goods';
 import { Storage } from '@utils/storage';
 import YesCart from './components/YesCart';
 
 function Cart() {
-  const [save, setSave] = useRecoilState(saveCart);
-  const { allLists } = useRecoilValue(productLists);
+  const [cartItems, setCartItems] = useRecoilState(cartItemsState);
+  const { allProductsListObj } = useRecoilValue(allProductsState);
 
-  const deleteCart = () => {
-    setSave({});
+  const deleteAllCartItems = () => {
+    setCartItems({});
     Storage.remove('cart_data');
   };
 
-  const toPr = () => {
+  const totalPrice = () => {
     let newId = 0;
     let newCount = 0;
     let newTotalPrice = 0;
 
-    Object.keys(save).forEach((key) => {
-      newId = save[key].id;
-      newCount = save[key].count;
-      newTotalPrice += (allLists[newId].price * newCount);
+    Object.keys(cartItems).forEach((key) => {
+      newId = cartItems[key].id;
+      newCount = cartItems[key].count;
+      newTotalPrice += (allProductsListObj[newId].price * newCount);
     });
 
     return newTotalPrice;
   };
 
   const result = () => {
-    if (Object.keys(save).length !== 0) {
+    if (Object.keys(cartItems).length !== 0) {
       return (
         <section className="container mx-auto">
           <div className="px-5 xl:px-20">
@@ -37,7 +37,7 @@ function Cart() {
             <div>
               <p className="text-3xl">
                 Total: $
-                { toPr() }
+                { totalPrice() }
               </p>
               <label htmlFor="my-modal-6" className="btn modal-button mt-4 btn-primary">구매하기 버튼</label>
               <input type="checkbox" id="my-modal-6" className="modal-toggle" />
@@ -46,7 +46,7 @@ function Cart() {
                   <h3 className="font-bold text-lg">정말로 구매하시겠습니까?</h3>
                   <p className="py-4">장바구니의 모든 상품들이 삭제됩니다.</p>
                   <div className="modal-action">
-                    <label htmlFor="my-modal-6" className="btn" onClick={deleteCart}>네</label>
+                    <label htmlFor="my-modal-6" className="btn" onClick={deleteAllCartItems}>네</label>
                     <label htmlFor="my-modal-6" className="btn">아니오</label>
                   </div>
                 </div>

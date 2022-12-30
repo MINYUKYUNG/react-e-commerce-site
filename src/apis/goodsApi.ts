@@ -15,7 +15,7 @@ export const productsApi = async () => {
   }
 };
 
-export const womenFashionsApi = async () => {
+export const womenFashionApi = async () => {
   try {
     const { data } = await apiRoot.get(`/category/women's clothing${SORT}`);
     return data;
@@ -24,7 +24,7 @@ export const womenFashionsApi = async () => {
   }
 };
 
-export const menFashionsApi = async () => {
+export const menFashionApi = async () => {
   try {
     const { data } = await apiRoot.get(`/category/men's clothing${SORT}`);
     return data;
@@ -51,7 +51,7 @@ export const jeweleryApi = async () => {
   }
 };
 
-export const singleApi = async (productId: string | undefined) => {
+export const singleProductApi = async (productId: string | undefined) => {
   try {
     const { data } = await apiRoot.get(`/${productId}`);
     return data;

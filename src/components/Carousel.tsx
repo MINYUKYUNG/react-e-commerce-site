@@ -3,15 +3,15 @@ import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import { Link } from 'react-router-dom';
 import { jeans, necklace, salad } from '@assets/images/index';
 
-interface imagesGuard {
+interface ImagesGuard {
   id: number
   url: string
   des: string
   to: string
 }
 
-function CarouselCom() {
-  const images: imagesGuard[] = [
+function CarouselImages() {
+  const images: ImagesGuard[] = [
     {
       id: 1,
       url: jeans,
@@ -56,4 +56,4 @@ function CarouselCom() {
   );
 }
 
-export default CarouselCom;
+export default CarouselImages;

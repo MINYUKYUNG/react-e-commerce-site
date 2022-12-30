@@ -1,13 +1,13 @@
 import { Link } from 'react-router-dom';
 import { useRecoilValue, useSetRecoilState } from 'recoil';
-import { saveCart, updateCart, deleteItem } from '@store/cart';
-import { productLists } from '@store/goods';
+import { cartItemsState, updateCart, deleteCartItem } from '@store/cart';
+import { allProductsState } from '@store/goods';
 
 function YesCart() {
-  const save = useRecoilValue(saveCart);
-  const { allLists } = useRecoilValue(productLists);
+  const cartItems = useRecoilValue(cartItemsState);
+  const { allProductsListObj } = useRecoilValue(allProductsState);
   const setUpdateCart = useSetRecoilState(updateCart);
-  const setDeleteItem = useSetRecoilState(deleteItem);
+  const setDeleteCartItem = useSetRecoilState(deleteCartItem);
 
   const plusCart = (value: number) => {
     setUpdateCart({
@@ -21,33 +21,33 @@ function YesCart() {
       num: -1,
     });
   };
-  const delItem = (value: number) => {
-    setDeleteItem({
+  const deleteItem = (value: number) => {
+    setDeleteCartItem({
       id: value,
     });
   };
 
-  const result = () => {
-    let baseCart: { id: number, count: number }[] = [];
+  const yesCartResult = () => {
+    let cartBase: { id: number, count: number }[] = [];
 
-    Object.keys(save).forEach((key) => {
-      baseCart = [...baseCart, save[key]];
+    Object.keys(cartItems).forEach((key) => {
+      cartBase = [...cartBase, cartItems[key]];
     });
 
-    const cartList = baseCart.map(({ id, count }) => (
+    const cartList = cartBase.map(({ id, count }) => (
       <div key={id} className="card lg:card-side border-solid border border-gray-200 my-12">
         <Link to={`/products/${id}`} className="bg-white flex justify-center">
           <figure className="bg-white h-56 w-56">
-            <img src={allLists[id].image} alt="상품 이미지" className="object-contain h-5/6 w-5/6" />
+            <img src={allProductsListObj[id].image} alt="상품 이미지" className="object-contain h-5/6 w-5/6" />
           </figure>
         </Link>
         <div className="card-body relative">
           <Link to={`/products/${id}`}>
-            <h2 className="card-title">{ allLists[id].title }</h2>
+            <h2 className="card-title">{ allProductsListObj[id].title }</h2>
           </Link>
           <p className="text-3xl">
             $
-            { allLists[id].price * count }
+            { allProductsListObj[id].price * count }
           </p>
           <div className="card-actions pt-4">
             <div className="btn-group">
@@ -59,7 +59,7 @@ function YesCart() {
           <button
             type="button"
             className="btn btn-square btn-outline absolute bottom-3 2xl:top-3 right-3 border-0 hover:bg-inherit"
-            onClick={() => delItem(id)}
+            onClick={() => deleteItem(id)}
           >
             <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 stroke-black dark:stroke-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
@@ -73,7 +73,7 @@ function YesCart() {
   };
 
   return (
-    <div>{ result() }</div>
+    <div>{ yesCartResult() }</div>
   );
 }
 

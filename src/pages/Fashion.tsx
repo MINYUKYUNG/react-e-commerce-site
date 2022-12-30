@@ -1,17 +1,12 @@
 import Category from '@components/Category';
 import { useRecoilValue } from 'recoil';
-import { womenFashionLists, menFashionLists } from '@store/goods';
+import { womenFashionState, menFashionState } from '@store/goods';
 
 function Fashion() {
-  const { womenFash } = useRecoilValue(womenFashionLists);
-  const { menFash } = useRecoilValue(menFashionLists);
+  const { womenFashionList } = useRecoilValue(womenFashionState);
+  const { menFashionList } = useRecoilValue(menFashionState);
 
-  const info = {
-    data: [...womenFash, ...menFash],
-    subTitle: '패션',
-  };
-
-  return <Category {...info} />;
+  return <Category data={[...womenFashionList, ...menFashionList]} subTitle="패션" />;
 }
 
 export default Fashion;

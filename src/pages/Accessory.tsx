@@ -1,16 +1,11 @@
 import Category from '@components/Category';
 import { useRecoilValue } from 'recoil';
-import { jeweleryLists } from '@store/goods';
+import { jeweleryState } from '@store/goods';
 
 function Accessory() {
-  const { jewe } = useRecoilValue(jeweleryLists);
+  const { jeweleryList } = useRecoilValue(jeweleryState);
 
-  const info = {
-    data: jewe,
-    subTitle: '액세서리',
-  };
-
-  return <Category {...info} />;
+  return <Category data={jeweleryList} subTitle="액세서리" />;
 }
 
 export default Accessory;

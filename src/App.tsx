@@ -4,17 +4,17 @@ import { useEffect } from 'react';
 import RouterView from '@routes/RouterView';
 import ScrollTop from '@routes/ScrollTop';
 import { useSetRecoilState } from 'recoil';
-import { saveCart } from '@store/cart';
+import { cartItemsState } from '@store/cart';
 import { Storage } from '@utils/storage';
 
 function App() {
-  const setSaveCart = useSetRecoilState(saveCart);
+  const setCartItems = useSetRecoilState(cartItemsState);
 
   useEffect(() => {
     if (Storage.get('cart_data') === null) {
       Storage.set('cart_data', JSON.stringify({}));
     } else if (Storage.get('cart_data')) {
-      setSaveCart(JSON.parse(Storage.get('cart_data') || '{}'));
+      setCartItems(JSON.parse(Storage.get('cart_data') || '{}'));
     }
   }, []);
 

@@ -26,9 +26,9 @@ const getRenderHook = () => renderHook(
 );
 
 it('GET /products/1: 상품목록 중 ID 값이 일치하는 1개의 데이터 객체만 가져오기', async () => {
-  const getItem = getRenderHook();
+  const { result } = getRenderHook();
 
-  const result = {
+  const expected = {
     id: 1,
     title: 'Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops',
     price: 110,
@@ -41,5 +41,5 @@ it('GET /products/1: 상품목록 중 ID 값이 일치하는 1개의 데이터 �
     },
   };
 
-  await waitFor(() => expect(getItem.result.current.data).toEqual(result));
+  await waitFor(() => expect(result.current.data).toEqual(expected));
 });
