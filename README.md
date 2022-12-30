@@ -11,7 +11,6 @@
 ## 배포 링크
 - https://mmm-e-commerce.chloemin.com
 <br/>
-<br/>
 
 ## 기술 스택
 - React 18 + Vite + TypeScript
@@ -34,10 +33,10 @@
         - 상태 관리 단위 테스트, API 기능과 상태 관리에 대한 통합 테스트
 
 4. 서비스 화면 미리보기  
-        - Light Mode  
+- Light Mode  
     ![light](./src/assets/images/light%20ver.png)
-<br/>  
-        - Dark Mode  
+
+- Dark Mode  
     ![dark](./src/assets/images/dark%20ver.png)
 <br/>
 
@@ -68,5 +67,3 @@
 | routes | 리액트 라우팅 파일 디렉토리 |
 | store | 전역상태관리 파일 디렉토리 |
 | utils | 중복 로직 함수를 순수 함수화한 파일 디렉토리 |
-<br/>
-
